@@ -9,6 +9,40 @@
     />
 
     <Card class="page-title container">
+      <h1> Your tracks </h1>
+    <table>
+    <tr>
+      <th>
+        <input type="checkbox" @click="showAll">
+      </th>
+      <th>Room</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Track</th>
+      <th>Title</th>
+    </tr>
+    <tr v-for="talk in talks" :key="talk.title">
+      <th>
+        <input type="checkbox" @click="ifUncheckHiddenRow"> 
+      </th>
+      <td>{{talk.track.room}}</td>
+      <td> <!-- {{talk.start}}  -->
+        {{talk.start.replace(/\d{4}-(\d{2}-\d{2})T(\d+:\d+):00\+08:00/, (_, d, t) => ""+d+" "+t)}}
+      </td>
+      <td> <!-- {{talk.end}} -->
+        {{talk.end.replace(/\d{4}-\d{2}-\d{2}T(\d+:\d+):00\+08:00/, (_, t) => t)}}
+      </td>
+      <td>
+        {{talk.track.id}}
+      </td>
+      <td>
+        {{talk.id}}
+        <!--{{talk}} --></td>
+    </tr>
+    </table>
+    </Card>
+
+    <Card class="page-title container">
       <h1>{{ $t('programs.tracks') }}</h1>
     </Card>
 
